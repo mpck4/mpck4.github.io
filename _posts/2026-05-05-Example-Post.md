@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Example Post"
-date: 2025-xx-xx
+date: 2026-03-05
 categories: [Bug Bounty]
 tags: [web, bac, access-control, bugbounty, axis]
 ---
