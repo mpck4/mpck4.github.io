@@ -29,6 +29,7 @@ permalink: /about/
     <span class="tag-pill">Privilege Escalation</span>
     <span class="tag-pill">Binary Exploitation</span>
     <span class="tag-pill">Python</span>
+    <span class="tag-pill">Java</span>
     <span class="tag-pill">Bash</span>
     <span class="tag-pill">Metasploit</span>
     <span class="tag-pill">Burp Suite</span>
@@ -42,7 +43,7 @@ permalink: /about/
   <p>
     You can find me on <a href="https://tryhackme.com/p/mpck4" target="_blank">TryHackMe</a> (Top 2% globally),
     <a href="https://hackthebox.com" target="_blank">HackTheBox</a>, and doing bug bounty work on Bugcrowd.
-    I'm in Northeastern's CTF club.
+    I'm also in Northeastern's CTF club.
   </p>
 
   <h2>Contact</h2>
