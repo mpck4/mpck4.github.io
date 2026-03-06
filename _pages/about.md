@@ -14,8 +14,7 @@ permalink: /about/
   <h2>whoami</h2>
   <p>
     I'm <strong style="color:#fff">Charlie (mpck4)</strong>, a cybersecurity student at Northeastern University
-    pursuing a Cyber Operations concentration with a focus on penetration testing and offensive security.
-    I document CTF writeups, vulnerability research, and tooling here.
+    pursuing a Cybersecurity BA. On here I'm documenting write-ups or other projects I do related to Cybersecurity.
   </p>
 
   <h2>What I Do</h2>
@@ -29,7 +28,6 @@ permalink: /about/
     <span class="tag-pill">Web Exploitation</span>
     <span class="tag-pill">Privilege Escalation</span>
     <span class="tag-pill">Binary Exploitation</span>
-    <span class="tag-pill">Active Directory</span>
     <span class="tag-pill">Python</span>
     <span class="tag-pill">Bash</span>
     <span class="tag-pill">Metasploit</span>
@@ -42,9 +40,9 @@ permalink: /about/
 
   <h2>Platforms</h2>
   <p>
-    You can find me on <a href="https://tryhackme.com/p/mpck4" target="_blank">TryHackMe</a> (Top 3% globally),
+    You can find me on <a href="https://tryhackme.com/p/mpck4" target="_blank">TryHackMe</a> (Top 2% globally),
     <a href="https://hackthebox.com" target="_blank">HackTheBox</a>, and doing bug bounty work on Bugcrowd.
-    I'm also active in Northeastern's CTF club.
+    I'm in Northeastern's CTF club.
   </p>
 
   <h2>Contact</h2>
