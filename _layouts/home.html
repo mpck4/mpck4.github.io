@@ -1,0 +1,54 @@
+---
+layout: default
+---
+
+<div class="page-header">
+  <h1 class="page-title">{{ site.title }}<span class="cursor"></span></h1>
+  <p class="page-subtitle">{{ site.tagline }}</p>
+</div>
+
+{% if paginator.posts %}
+  {% assign posts = paginator.posts %}
+{% else %}
+  {% assign posts = site.posts %}
+{% endif %}
+
+{% for post in posts %}
+<article class="home-post-card">
+  <div class="home-post-title">
+    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+  </div>
+
+  {% if post.excerpt %}
+  <div class="home-post-excerpt">
+    {{ post.excerpt | strip_html | truncatewords: 30 }}
+  </div>
+  {% endif %}
+
+  <div class="home-post-footer">
+    <span>{{ post.date | date: "%d %b %Y" }}</span>
+    {% if post.categories and post.categories.size > 0 %}
+      <span>·</span>
+      <span>{{ post.categories | first }}</span>
+    {% endif %}
+    {% if post.tags and post.tags.size > 0 %}
+      <span>·</span>
+      {% for tag in post.tags limit:3 %}
+        <a href="{{ '/tags/' | relative_url }}#{{ tag | slugify }}" class="tag-pill">{{ tag }}</a>
+      {% endfor %}
+    {% endif %}
+  </div>
+</article>
+{% endfor %}
+
+{% if paginator.total_pages > 1 %}
+<nav class="pagination" style="display:flex;gap:.5rem;margin-top:2rem;font-size:.72rem;">
+  {% if paginator.previous_page %}
+    <a href="{{ paginator.previous_page_path | relative_url }}" style="color:var(--link)">← Newer</a>
+  {% endif %}
+  <span style="color:var(--muted)">Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
+  {% if paginator.next_page %}
+    <a href="{{ paginator.next_page_path | relative_url }}" style="color:var(--link)">Older →</a>
+  {% endif %}
+</nav>
+{% endif %}

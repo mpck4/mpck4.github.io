@@ -1,0 +1,61 @@
+title: mpck4
+tagline: "Cybersecurity @ Northeastern · Pentesting & Offensive Security"
+description: "CTF writeups, pentest notes, and security research by mpck4."
+url: "https://mpck4.github.io"
+baseurl: ""
+
+author:
+  name: mpck4
+  bio: "Cybersecurity @ Northeastern · Pentesting & Offensive Security · Bug Bounty"
+  github: mpck4
+  twitter: mpck4
+  tryhackme: mpck4
+
+# Build settings
+theme: null
+plugins:
+  - jekyll-paginate
+  - jekyll-feed
+  - jekyll-sitemap
+
+paginate: 10
+paginate_path: "/page:num/"
+
+# Collections / page routing
+collections:
+  pages:
+    output: true
+    permalink: /:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: default
+
+# Permalink style
+permalink: /posts/:slug/
+
+# Markdown
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+# Sass
+sass:
+  style: compressed
+
+# Exclude from build
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - "*.sh"

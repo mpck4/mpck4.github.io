@@ -1,0 +1,53 @@
+---
+layout: default
+---
+
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">{{ page.title }}</h1>
+    <div class="post-meta">
+      <span class="post-meta-item">
+        <span style="color:var(--accent)">◷</span>
+        {{ page.date | date: "%d %b %Y" }}
+      </span>
+      {% if page.categories and page.categories.size > 0 %}
+      <span class="post-meta-item">
+        <span style="color:var(--accent)">⊞</span>
+        <a href="{{ '/categories/' | relative_url }}#{{ page.categories | first | slugify }}" style="color:var(--muted)">
+          {{ page.categories | first }}
+        </a>
+      </span>
+      {% endif %}
+      {% if page.tags and page.tags.size > 0 %}
+      <div class="post-meta-tags">
+        {% for tag in page.tags %}
+          <a href="{{ '/tags/' | relative_url }}#{{ tag | slugify }}" class="tag-pill">{{ tag }}</a>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="post-body">
+    {{ content }}
+  </div>
+
+  <!-- Prev / Next -->
+  <nav class="post-nav">
+    {% if page.previous.url %}
+    <a href="{{ page.previous.url | relative_url }}" class="post-nav-link">
+      <span class="nav-dir">← Previous</span>
+      <span class="nav-title">{{ page.previous.title | truncatewords: 8 }}</span>
+    </a>
+    {% else %}
+    <div></div>
+    {% endif %}
+
+    {% if page.next.url %}
+    <a href="{{ page.next.url | relative_url }}" class="post-nav-link" style="text-align:right">
+      <span class="nav-dir">Next →</span>
+      <span class="nav-title">{{ page.next.title | truncatewords: 8 }}</span>
+    </a>
+    {% endif %}
+  </nav>
+</article>

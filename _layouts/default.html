@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% include head.html %}
+</head>
+<body>
+<div class="layout">
+
+  {% include sidebar-left.html %}
+
+  <!-- Topbar -->
+  <header class="topbar">
+    <div class="breadcrumb">
+      <a href="{{ '/' | relative_url }}">Home</a>
+      {% if page.url != '/' %}
+        <span class="sep">/</span>
+        {% if page.title %}<span>{{ page.title }}</span>{% endif %}
+      {% endif %}
+    </div>
+    <div class="search-wrap">
+      <span class="search-icon">⌕</span>
+      <input type="text" id="search-input" placeholder="Search writeups..." />
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="main">
+    {{ content }}
+  </main>
+
+  {% include sidebar-right.html %}
+
+  <!-- Footer -->
+  <footer class="footer">
+    <span>© {{ 'now' | date: "%Y" }} <a href="{{ '/' | relative_url }}">{{ site.author.name }}</a>. All rights reserved.</span>
+    <span>Built with <a href="https://jekyllrb.com" target="_blank">Jekyll</a> on <a href="https://pages.github.com" target="_blank">GitHub Pages</a></span>
+  </footer>
+
+</div>
+
+<script>
+  // Simple client-side search filter for archives
+  const searchInput = document.getElementById('search-input');
+  if (searchInput) {
+    searchInput.addEventListener('input', function() {
+      const q = this.value.toLowerCase();
+      document.querySelectorAll('.post-item').forEach(item => {
+        const title = item.querySelector('.post-link')?.textContent.toLowerCase() || '';
+        const tags  = item.querySelector('.post-tags-inline')?.textContent.toLowerCase() || '';
+        item.style.display = (!q || title.includes(q) || tags.includes(q)) ? '' : 'none';
+      });
+      // Hide empty year blocks
+      document.querySelectorAll('.year-block').forEach(block => {
+        const visible = [...block.querySelectorAll('.post-item')].some(i => i.style.display !== 'none');
+        block.style.display = visible ? '' : 'none';
+      });
+    });
+  }
+</script>
+</body>
+</html>

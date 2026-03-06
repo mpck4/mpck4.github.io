@@ -1,0 +1,108 @@
+// ── Archives page ─────────────────────────────────────
+.year-block {
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: fadeUp 0.4s ease forwards;
+
+  @for $i from 1 through 6 {
+    &:nth-child(#{$i}) { animation-delay: #{$i * 0.07}s; }
+  }
+}
+
+.year-heading {
+  font-family: $font-display;
+  font-size: 1rem;
+  font-weight: 700;
+  color: $accent;
+  margin-bottom: 0.8rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid $border;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.year-count {
+  font-family: $font-mono;
+  font-size: 0.62rem;
+  color: $muted;
+  font-weight: 400;
+  background: $bg3;
+  border: 1px solid $border;
+  padding: 1px 6px;
+  border-radius: 2px;
+}
+
+.post-list { display: flex; flex-direction: column; }
+
+.post-item {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.4rem 0.5rem;
+  border-radius: 4px;
+  transition: background $transition;
+  border: 1px solid transparent;
+
+  &:hover {
+    background: $bg3;
+    border-color: $border;
+  }
+}
+
+.post-date {
+  font-size: 0.68rem;
+  color: $muted;
+  min-width: 52px;
+  flex-shrink: 0;
+  letter-spacing: 0.02em;
+
+  .day   { color: $text; font-weight: 500; }
+  .month { font-size: 0.62rem; }
+}
+
+.post-link {
+  color: $link;
+  font-size: 0.78rem;
+  flex: 1;
+  min-width: 0;
+
+  &:hover { color: $accent2; text-decoration: underline; }
+}
+
+.post-tags-inline {
+  display: flex;
+  gap: 0.3rem;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+// ── Tags / Categories pages ───────────────────────────
+.tag-section, .category-section {
+  margin-bottom: 2.5rem;
+}
+
+.tag-heading, .category-heading {
+  font-family: $font-display;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: $accent2;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid $border;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+
+  .count {
+    font-family: $font-mono;
+    font-size: 0.6rem;
+    color: $muted;
+    background: $bg3;
+    border: 1px solid $border;
+    padding: 1px 5px;
+    border-radius: 2px;
+    font-weight: 400;
+  }
+}

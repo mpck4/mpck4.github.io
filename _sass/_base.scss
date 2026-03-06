@@ -1,0 +1,124 @@
+// ── Reset & Base ──────────────────────────────────────
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: $font-size;
+}
+
+body {
+  background: $bg;
+  color: $text;
+  font-family: $font-mono;
+  line-height: $line-height;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: $link;
+  text-decoration: none;
+  transition: color $transition;
+  &:hover { color: $accent2; }
+}
+
+ul, ol { list-style: none; }
+
+img { max-width: 100%; height: auto; }
+
+// ── Scrollbars ────────────────────────────────────────
+::-webkit-scrollbar        { width: 3px; height: 3px; }
+::-webkit-scrollbar-track  { background: transparent; }
+::-webkit-scrollbar-thumb  { background: $border; border-radius: 2px; }
+
+// ── Selection ─────────────────────────────────────────
+::selection {
+  background: rgba($accent, 0.2);
+  color: $white;
+}
+
+// ── Animations ────────────────────────────────────────
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-ring {
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  50%       { transform: scale(1.06); opacity: 0.6; }
+}
+
+// ── Utility ───────────────────────────────────────────
+.cursor {
+  display: inline-block;
+  width: 8px;
+  height: 13px;
+  background: $accent;
+  margin-left: 2px;
+  vertical-align: middle;
+  animation: blink 1.1s step-end infinite;
+}
+
+.tag-pill {
+  display: inline-block;
+  font-size: 0.58rem;
+  padding: 1px 7px;
+  border-radius: 2px;
+  background: $tag-bg;
+  border: 1px solid $tag-border;
+  color: $accent2;
+  letter-spacing: 0.04em;
+  transition: all $transition;
+  &:hover {
+    background: #0e2a40;
+    border-color: $accent2;
+    color: $white;
+  }
+}
+
+// ── Rouge syntax highlighting ─────────────────────────
+.highlight {
+  background: $bg3;
+  border: 1px solid $border;
+  border-radius: 4px;
+  padding: 1rem 1.2rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  font-size: 0.78rem;
+  line-height: 1.6;
+
+  .k, .kd, .kn, .kp, .kr, .kt { color: #f97316; }
+  .s, .s1, .s2, .se, .si, .sb  { color: #86efac; }
+  .c, .c1, .cm, .cp             { color: $muted; font-style: italic; }
+  .n, .na, .nb, .nc, .nd        { color: $text; }
+  .o, .ow                        { color: $accent2; }
+  .m, .mi, .mf                   { color: #fb923c; }
+  .nf, .nx                       { color: $link; }
+  .p                             { color: $muted; }
+}
+
+code {
+  font-family: $font-mono;
+  font-size: 0.82em;
+  background: $bg3;
+  border: 1px solid $border;
+  border-radius: 2px;
+  padding: 1px 5px;
+  color: $accent;
+}
+
+pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: $text;
+}

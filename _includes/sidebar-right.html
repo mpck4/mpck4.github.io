@@ -1,0 +1,51 @@
+<aside class="sidebar-right">
+
+  <!-- Stats -->
+  <div class="widget">
+    <div class="widget-title">Stats</div>
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-num">{{ site.posts | size }}</div>
+        <div class="stat-label">Writeups</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">{{ site.tags | size }}</div>
+        <div class="stat-label">Tags</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">{{ site.categories | size }}</div>
+        <div class="stat-label">Categories</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">450+</div>
+        <div class="stat-label">THM Rooms</div>
+      </div>
+    </div>
+    <div class="rank-badge">
+      <span class="rank-num">Top 3%</span>
+      <div class="rank-label">TryHackMe Global Rank</div>
+    </div>
+  </div>
+
+  <!-- Recently Updated -->
+  <div class="widget">
+    <div class="widget-title">Recently Updated</div>
+    <ul class="recent-list">
+      {% for post in site.posts limit:5 %}
+      <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <!-- Trending Tags -->
+  <div class="widget">
+    <div class="widget-title">Trending Tags</div>
+    <div class="tag-cloud">
+      {% assign sorted_tags = site.tags | sort %}
+      {% for tag in sorted_tags limit:12 %}
+        <a href="{{ '/tags/' | relative_url }}#{{ tag[0] | slugify }}" class="tag-link">{{ tag[0] }}</a>
+      {% endfor %}
+    </div>
+  </div>
+
+</aside>
