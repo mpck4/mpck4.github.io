@@ -1,40 +1,38 @@
 ---
 layout: post
-title: "AXIS OS: Broken Access Control (CWE-862)"
-date: 2025-12-02
+title: "Example Post"
+date: 2025-xx-xx
 categories: [Bug Bounty]
 tags: [web, bac, access-control, bugbounty, axis]
 ---
 
-This is the finding that kicked off my AXIS OS research — a broken access control vulnerability (CWE-862) that granted SSH access to the camera device without valid credentials.
+This would potentially be where you write your intoduction. 
 
-## Discovery
+## Enumeration
 
-While fuzzing the web management interface, I noticed that certain API endpoints enforced authentication on the UI layer but not on the underlying API routes. A direct request bypassed the session check entirely.
+This would be the first step in finding something most of the time
 
-## Proof of Concept
+## Proof of Concept example
 
 ```python
-import requests
-
-target = "http://192.168.x.x"
-# Endpoint accessible without authentication
-r = requests.get(f"{target}/axis-cgi/admin/param.cgi?action=list&group=root")
-print(r.text)
+print("Hello world!")
 ```
 
-The response contained sensitive device configuration — including SSH daemon status and permitted users.
+Explanation of the code: prints hello world in python!
 
 ## Escalation
 
-With confirmation that SSH was enabled, credential guessing against default credential sets yielded a valid login, resulting in an interactive shell.
+Escalate!
 
 ## Classification
 
-- **CWE**: CWE-862 (Missing Authorization)
-- **CVSS**: Medium
-- **Impact**: Unauthorized access to device administration functions
+- CVE-whatever
+
+explain more if needed!
+
+- **CVSS**: Impact score
+- **Impact**: explanation
 
 ## Takeaways
 
-Always test API endpoints independently of their UI — authentication enforced in JavaScript or frontend routing is not real authentication.
+Good way to make a post
