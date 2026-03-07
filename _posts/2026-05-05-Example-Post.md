@@ -2,8 +2,8 @@
 layout: post
 title: "Example Post"
 date: 2026-03-05
-categories: [Bug Bounty]
-tags: [web, bac, access-control, bugbounty, axis]
+categories: [Example]
+tags: [example]
 ---
 
 This would potentially be where you write your intoduction. 
