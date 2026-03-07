@@ -6,7 +6,7 @@ categories: [TryHackMe]
 tags: [thm, writeup]
 ---
 
-Methodology for the Source TryHackMe room.  here: https://tryhackme.com/room/source
+Technical overview for the Source TryHackMe room.  here: https://tryhackme.com/room/source
 
 ## Enumeration
 
