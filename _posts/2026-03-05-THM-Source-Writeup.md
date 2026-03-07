@@ -3,7 +3,7 @@ layout: post
 title: "THM Source Writeup"
 date: 2026-03-05
 categories: [TryHackMe]
-tags: [web, metasploit, linux, rce,thm]
+tags: [thm, writeup]
 ---
 
 Methodology for the Source TryHackMe room.  here: https://tryhackme.com/room/source
