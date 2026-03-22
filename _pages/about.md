@@ -20,7 +20,7 @@ permalink: /about/
   <h2>What I Do</h2>
   <p>
     My work spans web application pentesting, binary exploitation, active directory attacks, and bug bounty hunting.
-    I'm currently doing research on the AXIS OS Bugcrowd program and contributing to open-source security tooling.
+    I'm currently doing research in Bugcrowd's bug bounty program and contributing to open-source security tooling.
   </p>
 
   <h2>Skills</h2>
