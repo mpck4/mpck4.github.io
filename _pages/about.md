@@ -37,7 +37,7 @@ permalink: /about/
     </a>
     <a class="post-row" href="#" style="text-decoration:none">
       <span class="pdate">x</span>
-      <div class="post-main"><span style="color:var(--white);font-weight:500;font-size:14px">@mpck4</span></div>
+      <div class="post-main"><span style="color:var(--white);font-weight:500;font-size:14px">@0xmpck4</span></div>
       <span class="post-arrow">→</span>
     </a>
   </div>
