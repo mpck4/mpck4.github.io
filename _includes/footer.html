@@ -1,10 +1,9 @@
 <footer>
   <div class="foot-inner">
     <span class="l">© {{ 'now' | date: "%Y" }} <a href="{{ '/' | relative_url }}">{{ site.author.name }}</a> · charliekruger.dev</span>
-    <div class="social" style="gap:14px">
-      {% if site.author.github %}<a href="https://github.com/{{ site.author.github }}" target="_blank" rel="noopener">github</a>{% endif %}
-      {% if site.author.tryhackme %}<a href="https://tryhackme.com/p/{{ site.author.tryhackme }}" target="_blank" rel="noopener">tryhackme</a>{% endif %}
-      {% if site.author.twitter %}<a href="https://twitter.com/{{ site.author.twitter }}" target="_blank" rel="noopener">x/twitter</a>{% endif %}
-    </div>
+      <div class="privacy">
+        This website does not collect, store, or share any<br>
+        personal data or use tracking cookies.
+      </div>
   </div>
 </footer>
