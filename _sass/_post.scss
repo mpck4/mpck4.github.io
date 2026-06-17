@@ -50,7 +50,7 @@
 
   // code blocks (rouge wraps in .highlight; bare pre also handled)
   pre{
-    background:$bg2;overflow-x:auto;font-size:.82rem;line-height:1.6;
+    background:$bg2;white-space:pre-wrap;word-break:break-word;overflow-x:auto;;font-size:.82rem;line-height:1.6;
     padding:16px 18px;margin:0;
     code{background:none;border:none;padding:0;color:$text;font-size:inherit}
   }
@@ -76,6 +76,8 @@
   color:$wine-edge;font-size:11px;letter-spacing:3px;
   background:$bg3;border-bottom:1px solid $border;
 }
+.post-body .highlight .highlight{border:none;border-radius:0;margin:0;background:transparent}
+.post-body .highlight .highlight::before{display:none}
 
 // ── Post nav (prev/next) ──────────────────────────────
 .post-nav{
