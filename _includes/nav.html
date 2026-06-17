@@ -1,0 +1,11 @@
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="{{ '/' | relative_url }}" class="brand"><span class="prompt">~/</span>charlie<span class="cursor"></span></a>
+    <div class="nav-links">
+      <a href="{{ '/projects/' | relative_url }}" {% if page.url contains 'projects' %}class="active"{% endif %}>projects</a>
+      <a href="{{ '/writeups/' | relative_url }}" {% if page.url contains 'writeups' or page.url contains 'archives' %}class="active"{% endif %}>writeups</a>
+      <a href="{{ '/about/' | relative_url }}" {% if page.url contains 'about' %}class="active"{% endif %}>about</a>
+      <a href="https://github.com/{{ site.author.github }}" class="cta" target="_blank" rel="noopener">github ↗</a>
+    </div>
+  </div>
+</nav>

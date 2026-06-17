@@ -1,0 +1,28 @@
+---
+layout: default
+title: Writeups
+permalink: /writeups/
+---
+
+<div class="breadcrumb"><a href="{{ '/' | relative_url }}">~/</a><span class="sep">/</span>writeups</div>
+<div class="page-head">
+  <h1><span class="p">#</span> writeups</h1>
+  <div class="sub">{{ site.posts | size }} writeups &amp; counting · CTF rooms, pentest notes, hardware research</div>
+</div>
+
+<section style="padding-top:32px">
+  <div class="posts">
+    {% for post in site.posts %}
+    <a class="post-row" href="{{ post.url | relative_url }}" style="text-decoration:none">
+      <span class="pdate">{{ post.date | date: "%d %b %y" }}</span>
+      <div class="post-main">
+        <span style="color:var(--white);font-weight:500;font-size:14px">{{ post.title }}</span>
+        {% if post.categories.size > 0 or post.tags.size > 0 %}
+        <div class="post-cat">{% if post.categories.size > 0 %}{{ post.categories | first }}{% endif %}{% for tag in post.tags limit:3 %} · {{ tag }}{% endfor %}</div>
+        {% endif %}
+      </div>
+      <span class="post-arrow">→</span>
+    </a>
+    {% endfor %}
+  </div>
+</section>

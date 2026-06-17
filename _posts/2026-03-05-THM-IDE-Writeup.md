@@ -3,7 +3,7 @@ layout: post
 title: "THM IDE Writeup"
 date: 2026-03-10
 categories: [TryHackMe]
-tage: [thm, writeup]
+tags: [thm, writeup]
 ---
 
 Technical writeup for the tryhackme IDE room - here: https://tryhackme.com/room/ide

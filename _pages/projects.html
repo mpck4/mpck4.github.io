@@ -1,0 +1,28 @@
+---
+layout: default
+title: Projects
+permalink: /projects/
+---
+
+<div class="breadcrumb"><a href="{{ '/' | relative_url }}">~/</a><span class="sep">/</span>projects</div>
+<div class="page-head">
+  <h1><span class="p">#</span> projects</h1>
+  <div class="sub">tools, research, and things I've built · offensive security &amp; beyond</div>
+</div>
+
+<section style="padding-top:32px">
+  <div class="grid">
+    {% for project in site.data.projects %}
+    <div class="card">
+      <div class="card-top">
+        <h3><span class="fn">{% if project.url and project.url != "" %}<a href="{{ project.url }}" target="_blank" rel="noopener" style="color:inherit">{{ project.name }}</a>{% else %}{{ project.name }}{% endif %}</span></h3>
+        {% if project.badge %}<span class="badge {{ project.badge_cls }}">{{ project.badge }}</span>{% endif %}
+      </div>
+      <p>{{ project.desc }}</p>
+      <div class="card-foot">
+        {% for t in project.tech %}<span class="tech">{{ t }}</span>{% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>

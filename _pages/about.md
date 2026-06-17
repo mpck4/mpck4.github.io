@@ -4,52 +4,41 @@ title: About
 permalink: /about/
 ---
 
-<div class="page-header">
-  <h1 class="page-title">About<span class="cursor"></span></h1>
-  <p class="page-subtitle">$ cat about.txt</p>
+<div class="breadcrumb"><a href="{{ '/' | relative_url }}">~/</a><span class="sep">/</span>about</div>
+<div class="page-head">
+  <h1><span class="p">#</span> about</h1>
+  <div class="sub">$ cat about.txt</div>
 </div>
 
-<div class="about-content">
-
-  <h2>whoami</h2>
-  <p>
-    I'm <strong style="color:#fff">Charlie (mpck4)</strong>, a cybersecurity student at Northeastern University
-    pursuing a Cybersecurity BA. On here I'm documenting write-ups or other projects I do related to Cybersecurity.
-  </p>
-
-  <h2>What I Do</h2>
-  <p>
-    My work spans web application pentesting, binary exploitation, active directory attacks, and bug bounty hunting.
-    I'm currently doing research in Bugcrowd's bug bounty program and contributing to open-source security tooling.
-  </p>
-
-  <h2>Skills</h2>
-  <div class="skill-row">
-    <span class="tag-pill">Web Exploitation</span>
-    <span class="tag-pill">Privilege Escalation</span>
-    <span class="tag-pill">Binary Exploitation</span>
-    <span class="tag-pill">Python</span>
-    <span class="tag-pill">Java</span>
-    <span class="tag-pill">Bash</span>
-    <span class="tag-pill">Metasploit</span>
-    <span class="tag-pill">Burp Suite</span>
-    <span class="tag-pill">nmap</span>
-    <span class="tag-pill">ffuf</span>
-    <span class="tag-pill">hashcat</span>
-    <span class="tag-pill">Linux</span>
+<section style="padding-top:32px">
+  <div class="card" style="cursor:default">
+    <p style="color:var(--text);font-size:14px;line-height:1.8;margin-bottom:18px">
+      I'm <span class="sh-white">Charlie Kruger</span> <span class="sh-dim">(mpck4)</span>, a Cybersecurity student at Northeastern's Khoury College concentrating in Cyber Operations. I do web app pentesting, privilege escalation, binary exploitation, and hardware/RF tinkering. This site is where I document writeups, tooling, and research.
+    </p>
+    <div class="card-foot">
+      <span class="tech">Python</span><span class="tech">Java</span><span class="tech">Bash</span><span class="tech">PowerShell</span><span class="tech">Ruby</span>
+      <span class="tech">Metasploit</span><span class="tech">Nmap</span><span class="tech">Burp Suite</span><span class="tech">Wireshark</span>
+    </div>
   </div>
 
-  <h2>Platforms</h2>
-  <p>
-    You can find me on <a href="https://tryhackme.com/p/mpck4" target="_blank">TryHackMe</a> (Top 2% globally),
-    <a href="https://hackthebox.com" target="_blank">HackTheBox</a>, and doing bug bounty work on Bugcrowd.
-    I'm also in Northeastern's CTF club.
-  </p>
-
-  <h2>Contact</h2>
-  <p>
-    Best way to reach me is via <a href="https://github.com/mpck4" target="_blank">GitHub</a>
-    or <a href="https://twitter.com/mpck4" target="_blank">Twitter/X</a>.
-  </p>
-
-</div>
+  <div class="sec-head" style="margin-top:48px">
+    <span class="hash">#</span><h2>find me</h2><span class="rule"></span>
+  </div>
+  <div class="posts">
+    <a class="post-row" href="https://github.com/mpck4" target="_blank" rel="noopener" style="text-decoration:none">
+      <span class="pdate">github</span>
+      <div class="post-main"><span style="color:var(--white);font-weight:500;font-size:14px">github.com/mpck4</span></div>
+      <span class="post-arrow">→</span>
+    </a>
+    <a class="post-row" href="https://tryhackme.com/p/mpck4" target="_blank" rel="noopener" style="text-decoration:none">
+      <span class="pdate">thm</span>
+      <div class="post-main"><span style="color:var(--white);font-weight:500;font-size:14px">tryhackme.com/p/mpck4</span><div class="post-cat">top 1% globally</div></div>
+      <span class="post-arrow">→</span>
+    </a>
+    <a class="post-row" href="#" style="text-decoration:none">
+      <span class="pdate">x</span>
+      <div class="post-main"><span style="color:var(--white);font-weight:500;font-size:14px">@mpck4</span></div>
+      <span class="post-arrow">→</span>
+    </a>
+  </div>
+</section>

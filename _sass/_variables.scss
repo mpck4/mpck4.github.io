@@ -1,28 +1,33 @@
-// ── Color palette ─────────────────────────────────────
-$bg:          #0d0f14;
-$bg2:         #12151c;
-$bg3:         #181c26;
-$border:      #1f2535;
-$text:        #c8d0e0;
-$muted:       #4a5570;
-$accent:      #4ade80;
-$accent2:     #22d3ee;
-$accent3:     #f97316;
-$link:        #7dd3fc;
-$tag-bg:      #0f1a2a;
-$tag-border:  #1e3a5f;
-$white:       #ffffff;
+// ── Wine palette ──────────────────────────────────────
+$bg:          #0a0b0e;
+$bg2:         #0f1116;
+$bg3:         #14171f;
+$border:      #1c2130;
+$border2:     #2a3142;
+$text:        #c3cad9;
+$muted:       #5b6680;
+$dim:         #3a4257;
+$accent:      #c2455e;   // readable wine accent
+$accent-dim:  #8a2d40;
+$accent2:     #c57e40;   // warm secondary
+$accent3:     #cf7488;   // soft wine (paths)
+$wine-deep:   #3F0112;   // deep surface
+$wine-edge:   #5e1a28;
+$white:       #f0f3f8;
 
 // ── Layout ────────────────────────────────────────────
-$sidebar-left-w:  260px;
-$sidebar-right-w: 240px;
-$max-width:       1200px;
+$maxw:        980px;
 
 // ── Typography ────────────────────────────────────────
-$font-mono:   'JetBrains Mono', monospace;
-$font-display:'Syne', sans-serif;
+$font-mono:   'JetBrains Mono', ui-monospace, monospace;
 $font-size:   15px;
 $line-height: 1.7;
 
 // ── Transitions ───────────────────────────────────────
 $transition: 0.15s ease;
+
+// ── Back-compat aliases (used by _post.scss / _archives.scss) ──
+$font-display:$font-mono;
+$link:        $accent3;
+$tag-bg:      $wine-deep;
+$tag-border:  $wine-edge;

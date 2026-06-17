@@ -2,53 +2,98 @@
 layout: default
 ---
 
-<div class="page-header">
-  <h1 class="page-title">{{ site.title }}<span class="cursor"></span></h1>
-  <p class="page-subtitle">{{ site.tagline }}</p>
+<header class="hero">
+  <div class="term">
+    <div class="term-bar">
+      <span class="bl"><span class="b">~/</span>whoami.sh</span>
+      <span class="clock" id="clock">--:--</span>
+    </div>
+    <div class="term-body">
+<div class="cat">      /\_/\
+     ( o.o )   meow.
+      &gt; ^ &lt;    pentester @ northeastern
 </div>
-
-{% if paginator.posts %}
-  {% assign posts = paginator.posts %}
-{% else %}
-  {% assign posts = site.posts %}
-{% endif %}
-
-{% for post in posts %}
-<article class="home-post-card">
-  <div class="home-post-title">
-    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      <div class="line"><span class="sh-prompt">charlie@khoury</span><span class="sh-dim">:</span><span class="sh-path">~</span><span class="sh-dim">$</span> <span id="typed"></span><span class="tcursor"></span></div>
+      <div id="output"></div>
+    </div>
   </div>
 
-  {% if post.excerpt %}
-  <div class="home-post-excerpt">
-    {{ post.excerpt | strip_html | truncatewords: 30 }}
+  <div class="hero-tags">
+    <span class="pill"><b>TryHackMe</b> top 1% global</span>
+    <span class="pill"><b>BS</b> Cybersecurity @ Northeastern</span>
+    <span class="pill"><b>Concentration</b> Cyber Operations</span>
+    <span class="pill"><b>3rd place</b> MIT hackathon</span>
   </div>
-  {% endif %}
+</header>
 
-  <div class="home-post-footer">
-    <span>{{ post.date | date: "%d %b %Y" }}</span>
-    {% if post.categories and post.categories.size > 0 %}
-      <span>·</span>
-      <span>{{ post.categories | first }}</span>
-    {% endif %}
-    {% if post.tags and post.tags.size > 0 %}
-      <span>·</span>
-      {% for tag in post.tags limit:3 %}
-        <a href="{{ '/tags/' | relative_url }}#{{ tag | slugify }}" class="tag-pill">{{ tag }}</a>
-      {% endfor %}
-    {% endif %}
+<section id="projects">
+  <div class="sec-head">
+    <span class="hash">#</span><h2>projects</h2>
+    <span class="rule"></span><span class="count">./ls -la | head -3</span>
   </div>
-</article>
-{% endfor %}
+  <div class="grid">
+    {% for project in site.data.projects limit:3 %}
+    <div class="card">
+      <div class="card-top">
+        <h3><span class="fn">{% if project.url and project.url != "" %}<a href="{{ project.url }}" target="_blank" rel="noopener" style="color:inherit">{{ project.name }}</a>{% else %}{{ project.name }}{% endif %}</span></h3>
+        {% if project.badge %}<span class="badge {{ project.badge_cls }}">{{ project.badge }}</span>{% endif %}
+      </div>
+      <p>{{ project.desc }}</p>
+      <div class="card-foot">
+        {% for t in project.tech %}<span class="tech">{{ t }}</span>{% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="more-row"><a class="more-link" href="{{ '/projects/' | relative_url }}">view all projects →</a></div>
+</section>
 
-{% if paginator.total_pages > 1 %}
-<nav class="pagination" style="display:flex;gap:.5rem;margin-top:2rem;font-size:.72rem;">
-  {% if paginator.previous_page %}
-    <a href="{{ paginator.previous_page_path | relative_url }}" style="color:var(--link)">← Newer</a>
-  {% endif %}
-  <span style="color:var(--muted)">Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
-  {% if paginator.next_page %}
-    <a href="{{ paginator.next_page_path | relative_url }}" style="color:var(--link)">Older →</a>
-  {% endif %}
-</nav>
-{% endif %}
+<section id="writeups">
+  <div class="sec-head">
+    <span class="hash">#</span><h2>recent writeups</h2>
+    <span class="rule"></span><span class="count">cat ~/posts/* | head -3</span>
+  </div>
+  <div class="posts">
+    {% for post in site.posts limit:3 %}
+    <a class="post-row" href="{{ post.url | relative_url }}" style="text-decoration:none">
+      <span class="pdate">{{ post.date | date: "%d %b %y" }}</span>
+      <div class="post-main">
+        <span style="color:var(--white);font-weight:500;font-size:14px">{{ post.title }}</span>
+        {% if post.categories.size > 0 or post.tags.size > 0 %}
+        <div class="post-cat">{% if post.categories.size > 0 %}{{ post.categories | first }}{% endif %}{% for tag in post.tags limit:3 %} · {{ tag }}{% endfor %}</div>
+        {% endif %}
+      </div>
+      <span class="post-arrow">→</span>
+    </a>
+    {% endfor %}
+  </div>
+  <div class="more-row"><a class="more-link" href="{{ '/writeups/' | relative_url }}">view all writeups →</a></div>
+</section>
+
+<script>
+  var cmd = "whoami && cat ./bio";
+  var out = [
+    {cls:'sh-white', t:'charlie kruger (mpck4)'},
+    {cls:'sh-out',   t:'offensive security · pentesting · ctf writeups'},
+    {cls:'sh-dim',   t:'northeastern khoury · cyber operations · class of 2029'},
+    {cls:'sh-amber', t:'[+] type `help` or scroll to explore →', amber:true},
+  ];
+  var typedEl = document.getElementById('typed');
+  var outEl = document.getElementById('output');
+  var i = 0;
+  function type(){
+    if(i < cmd.length){ typedEl.textContent += cmd[i++]; setTimeout(type, 55 + Math.random()*40); }
+    else { setTimeout(printOut, 350); }
+  }
+  var j = 0;
+  function printOut(){
+    if(j < out.length){
+      var d = document.createElement('div'); d.className = 'line';
+      var span = document.createElement('span');
+      span.className = out[j].amber ? 'sh-amber' : (out[j].cls === 'sh-white' ? 'sh-white' : 'sh-out');
+      span.textContent = out[j].t; d.appendChild(span); outEl.appendChild(d); j++;
+      setTimeout(printOut, 240);
+    }
+  }
+  setTimeout(type, 500);
+</script>

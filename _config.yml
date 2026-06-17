@@ -1,11 +1,11 @@
-title: mpck4
+title: "Charlie Kruger (mpck4)"
 tagline: "Cybersecurity @ Northeastern · Pentesting & Offensive Security"
 description: "CTF writeups, pentest notes, and security research by mpck4."
-url: "https://mpck4.github.io"
+url: "https://charliekruger.dev"
 baseurl: ""
 
 author:
-  name: mpck4
+  name: Charlie Kruger
   bio: "Cybersecurity @ Northeastern · Pentesting & Offensive Security · Bug Bounty"
   github: mpck4
   twitter: mpck4
