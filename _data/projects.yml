@@ -1,36 +1,36 @@
 # Edit your projects here. The home page shows the first 3; /projects shows all.
 # badge_cls: "amber" tints the badge differently (used for highlights like awards).
 - name: HonAI
-  badge: "★ 3rd @ MIT"
+  badge: "Sundai @ MIT"
   badge_cls: amber
   desc: "AI-powered SSH honeypot that emulates a convincing shell using an LLM backend, logging attacker behavior in real time. Placed 3rd at an MIT hackathon."
   tech: [Python, LLM, SSH, honeypot]
-  url: "https://github.com/mpck4"
+  url: "https://github.com/mpck4/HonAI"
 
 - name: SIMPLE-CLI
   badge: active
   badge_cls: ""
   desc: "Offensive-security multitool wrapping recon, enumeration, and exploitation workflows behind a single clean command-line interface."
   tech: [Python, Bash, offsec, tooling]
-  url: "https://github.com/mpck4"
+  url: "https://github.com/mpck4/SIMPLE-CLI"
 
 - name: CookYourBooks
-  badge: released
+  badge: NEU Assignment
   badge_cls: ""
   desc: "A Java recipe application built as a full-stack exercise — clean data modeling, search, and a usable desktop UI."
   tech: [Java, desktop, app]
-  url: "https://github.com/mpck4"
+  url: "https://neu-pdi.github.io/CS3100-Spring-2026/showcase/"
 
-- name: ChameleonUltra notes
-  badge: research
-  badge_cls: ""
-  desc: "Deep-dive teardown of the ChameleonUltra RFID/NFC emulator — card emulation, cloning, attack capabilities, and how it stacks up against the Proxmark3."
-  tech: [RFID, NFC, hardware]
-  url: ""
+#- name: ChameleonUltra notes
+  #badge: research
+  #badge_cls: ""
+  #desc: "Deep-dive teardown of the ChameleonUltra RFID/NFC emulator — card emulation, cloning, attack capabilities, and how it stacks up against the Proxmark3."
+  #tech: [RFID, NFC, hardware]
+  #url: ""
 
-- name: dotfiles
-  badge: wip
-  badge_cls: ""
-  desc: "Portable Sway rice for Debian/Gentoo — Waybar, Foot, Wofi, Mako, PipeWire. A black-minimal hardened setup, configured entirely over SSH."
-  tech: [Sway, Linux, ricing]
-  url: "https://github.com/mpck4"
+#- name: dotfiles
+  #badge: wip
+  #badge_cls: ""
+  #desc: "Portable Sway rice for Debian/Gentoo — Waybar, Foot, Wofi, Mako, PipeWire. A black-minimal hardened setup, configured entirely over SSH."
+  #tech: [Sway, Linux, ricing]
+  #url: "https://github.com/mpck4"
