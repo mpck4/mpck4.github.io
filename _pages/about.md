@@ -35,7 +35,7 @@ permalink: /about/
       <div class="post-main"><span style="color:var(--white);font-weight:500;font-size:14px">tryhackme.com/p/mpck4</span><div class="post-cat">top 1% globally</div></div>
       <span class="post-arrow">→</span>
     </a>
-    <a class="post-row" href="https://https://x.com/0xmpck4" target="_blank" rel="noopener" style="text-decoration:none">
+    <a class="post-row" href="https://x.com/0xmpck4" target="_blank" rel="noopener" style="text-decoration:none">
       <span class="pdate">x</span>
       <div class="post-main"><span style="color:var(--white);font-weight:500;font-size:14px">@0xmpck4</span></div>
       <span class="post-arrow">→</span>
