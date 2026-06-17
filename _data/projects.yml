@@ -21,6 +21,13 @@
   tech: [Java, desktop, app]
   url: "https://neu-pdi.github.io/CS3100-Spring-2026/showcase/"
 
+- name: HungryHusky
+  badge: Tracking
+  badge_cls: ""
+  desc: "NEU dining dollar tracker"
+  tech: [JavaScript, HTML, CSS]
+  url: "https://hungryhusky.vercel.app/"
+
 #- name: ChameleonUltra notes
   #badge: research
   #badge_cls: ""
