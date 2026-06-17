@@ -104,3 +104,57 @@ footer{border-top:1px solid $border;padding:32px 0;margin-top:32px}
   section{padding:44px 0}
   .post-row .pdate{min-width:auto}
 }
+
+// ---- tag pills (used on posts, rows, tag pages) ----
+.tag-pill{
+  font-size:11px;color:$accent3;background:$wine-deep;border:1px solid $wine-edge;
+  padding:2px 9px;border-radius:20px;text-decoration:none;transition:$transition;white-space:nowrap;
+}
+.tag-pill:hover{background:$wine-edge;color:$white}
+
+// ---- tag/category index pages ----
+.tag-cloud{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:2.5rem}
+.tag-link{
+  font-size:13px;color:$muted;background:$bg2;border:1px solid $border;
+  padding:6px 13px;border-radius:20px;text-decoration:none;transition:$transition;
+}
+.tag-link:hover{border-color:$accent;color:$white}
+.tag-link span{color:$dim !important}
+
+.tag-section, .category-section, .year-block{margin-bottom:2.5rem;scroll-margin-top:80px}
+.tag-heading, .category-heading, .year-heading{
+  display:flex;align-items:center;gap:.6rem;color:$white;font-size:1.05rem;font-weight:700;
+  margin-bottom:1rem;padding-bottom:.55rem;border-bottom:1px solid $border;letter-spacing:-.3px;
+}
+.tag-heading::before, .category-heading::before{content:'#';color:$accent;font-weight:800}
+.tag-heading .count, .category-heading .count, .year-count{
+  font-size:11px;color:$muted;background:$bg3;border:1px solid $border;
+  padding:1px 8px;border-radius:20px;font-weight:400;
+}
+
+// index post lists (tags/categories/archives) reuse .posts look
+.post-list{display:flex;flex-direction:column;border:1px solid $border;border-radius:10px;overflow:hidden;list-style:none;margin:0}
+.post-item{
+  display:flex;align-items:center;gap:16px;padding:14px 18px;background:$bg2;
+  border-bottom:1px solid $border;transition:$transition;
+}
+.post-item:last-child{border-bottom:none}
+.post-item:hover{background:$bg3}
+.post-item .post-date{color:$dim;font-size:12px;white-space:nowrap;min-width:90px;display:flex;gap:5px}
+.post-item .post-date .day{color:$text;font-weight:500}
+.post-item .post-link{flex:1;min-width:0;color:$white;font-weight:500;font-size:14px}
+.post-item .post-link:hover{color:$accent}
+.post-tags-inline{display:flex;gap:6px;flex-wrap:wrap;flex-shrink:0}
+
+// ---- writeups filter bar ----
+.filter-bar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;align-items:center}
+.filter-bar .flabel{color:$dim;font-size:12px;margin-right:4px}
+.filter-btn{
+  font-size:12px;color:$muted;background:$bg2;border:1px solid $border;
+  padding:5px 12px;border-radius:20px;cursor:pointer;transition:$transition;font-family:$font-mono;
+}
+.filter-btn:hover{border-color:$border2;color:$text}
+.filter-btn.active{color:$accent3;background:$wine-deep;border-color:$wine-edge}
+.browse-link{margin-left:auto;font-size:12px;color:$muted}
+.browse-link a{color:$muted}
+.browse-link a:hover{color:$accent}

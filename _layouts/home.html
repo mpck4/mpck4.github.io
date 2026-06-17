@@ -13,8 +13,11 @@ layout: default
      ( o.o )   meow.
       &gt; ^ &lt;    pentester @ northeastern
 </div>
-      <div class="line"><span class="sh-prompt">charlie@khoury</span><span class="sh-dim">:</span><span class="sh-path">~</span><span class="sh-dim">$</span> <span id="typed"></span><span class="tcursor"></span></div>
-      <div id="output"></div>
+      <div class="line"><span class="sh-prompt">charlie@khoury</span><span class="sh-dim">:</span><span class="sh-path">~</span><span class="sh-dim">$</span> <span class="sh-white">whoami &amp;&amp; cat ./bio</span></div>
+      <div class="line"><span class="sh-white">charlie kruger (mpck4)</span></div>
+      <div class="line"><span class="sh-out">offensive security · pentesting · ctf writeups</span></div>
+      <div class="line"><span class="sh-dim">northeastern khoury · cyber operations · class of 2029</span></div>
+      <div class="line"><span class="sh-amber">[+] scroll to explore →</span><span class="tcursor"></span></div>
     </div>
   </div>
 
@@ -69,31 +72,3 @@ layout: default
   </div>
   <div class="more-row"><a class="more-link" href="{{ '/writeups/' | relative_url }}">view all writeups →</a></div>
 </section>
-
-<script>
-  var cmd = "whoami && cat ./bio";
-  var out = [
-    {cls:'sh-white', t:'charlie kruger (mpck4)'},
-    {cls:'sh-out',   t:'offensive security · pentesting · ctf writeups'},
-    {cls:'sh-dim',   t:'northeastern khoury · cyber operations · class of 2029'},
-    {cls:'sh-amber', t:'[+] type `help` or scroll to explore →', amber:true},
-  ];
-  var typedEl = document.getElementById('typed');
-  var outEl = document.getElementById('output');
-  var i = 0;
-  function type(){
-    if(i < cmd.length){ typedEl.textContent += cmd[i++]; setTimeout(type, 55 + Math.random()*40); }
-    else { setTimeout(printOut, 350); }
-  }
-  var j = 0;
-  function printOut(){
-    if(j < out.length){
-      var d = document.createElement('div'); d.className = 'line';
-      var span = document.createElement('span');
-      span.className = out[j].amber ? 'sh-amber' : (out[j].cls === 'sh-white' ? 'sh-white' : 'sh-out');
-      span.textContent = out[j].t; d.appendChild(span); outEl.appendChild(d); j++;
-      setTimeout(printOut, 240);
-    }
-  }
-  setTimeout(type, 500);
-</script>

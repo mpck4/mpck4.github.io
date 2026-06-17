@@ -4,36 +4,31 @@ title: Tags
 permalink: /tags/
 ---
 
-<div class="page-header">
-  <h1 class="page-title">Tags<span class="cursor"></span></h1>
-  <p class="page-subtitle">{{ site.tags | size }} unique tags</p>
+<div class="breadcrumb"><a href="{{ '/' | relative_url }}">~/</a><span class="sep">/</span><a href="{{ '/writeups/' | relative_url }}">writeups</a><span class="sep">/</span>tags</div>
+<div class="page-head">
+  <h1><span class="p">#</span> tags</h1>
+  <div class="sub">{{ site.tags | size }} tags across {{ site.posts | size }} writeups</div>
 </div>
 
-<!-- Tag jump links -->
-<div class="tag-cloud" style="margin-bottom:2rem;">
+<section style="padding-top:28px">
   {% assign sorted_tags = site.tags | sort %}
-  {% for tag in sorted_tags %}
-    <a href="#{{ tag[0] | slugify }}" class="tag-link">
-      {{ tag[0] }} <span style="color:var(--muted);font-size:.6rem">({{ tag[1] | size }})</span>
-    </a>
-  {% endfor %}
-</div>
-
-{% for tag in sorted_tags %}
-<div class="tag-section" id="{{ tag[0] | slugify }}">
-  <h2 class="tag-heading">
-    {{ tag[0] }}
-    <span class="count">{{ tag[1] | size }}</span>
-  </h2>
-  <ul class="post-list">
-    {% for post in tag[1] %}
-    <li class="post-item">
-      <span class="post-date">
-        <span class="day">{{ post.date | date: "%d" }}</span>&nbsp;<span class="month">{{ post.date | date: "%b %Y" }}</span>
-      </span>
-      <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title }}</a>
-    </li>
+  <div class="tag-cloud">
+    {% for tag in sorted_tags %}
+    <a href="#{{ tag[0] | slugify }}" class="tag-link">{{ tag[0] }} <span>{{ tag[1] | size }}</span></a>
     {% endfor %}
-  </ul>
-</div>
-{% endfor %}
+  </div>
+
+  {% for tag in sorted_tags %}
+  <div class="tag-section" id="{{ tag[0] | slugify }}">
+    <h2 class="tag-heading">{{ tag[0] }}<span class="count">{{ tag[1] | size }}</span></h2>
+    <ul class="post-list">
+      {% for post in tag[1] %}
+      <li class="post-item">
+        <span class="post-date"><span class="day">{{ post.date | date: "%d" }}</span><span class="month">{{ post.date | date: "%b %Y" }}</span></span>
+        <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endfor %}
+</section>

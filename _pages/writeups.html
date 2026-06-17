@@ -10,10 +10,22 @@ permalink: /writeups/
   <div class="sub">{{ site.posts | size }} writeups &amp; counting · CTF rooms, pentest notes, hardware research</div>
 </div>
 
-<section style="padding-top:32px">
-  <div class="posts">
+<section style="padding-top:28px">
+
+  <div class="filter-bar">
+    <span class="flabel">filter:</span>
+    <button class="filter-btn active" data-filter="all">all</button>
+    {% assign all_tags = site.tags | sort %}
+    {% for tag in all_tags %}
+    <button class="filter-btn" data-filter="{{ tag[0] | slugify }}">{{ tag[0] }} <span style="color:var(--dim)">{{ tag[1] | size }}</span></button>
+    {% endfor %}
+    <span class="browse-link"><a href="{{ '/tags/' | relative_url }}">browse all tags →</a></span>
+  </div>
+
+  <div class="posts" id="writeup-list">
     {% for post in site.posts %}
-    <a class="post-row" href="{{ post.url | relative_url }}" style="text-decoration:none">
+    {% capture post_tags %}{% for t in post.tags %}{{ t | slugify }} {% endfor %}{% endcapture %}
+    <a class="post-row writeup-item" href="{{ post.url | relative_url }}" data-tags="{{ post_tags | strip }}" style="text-decoration:none">
       <span class="pdate">{{ post.date | date: "%d %b %y" }}</span>
       <div class="post-main">
         <span style="color:var(--white);font-weight:500;font-size:14px">{{ post.title }}</span>
@@ -25,4 +37,30 @@ permalink: /writeups/
     </a>
     {% endfor %}
   </div>
+
+  <p id="no-results" style="display:none;color:var(--muted);font-size:13px;text-align:center;padding:24px">no writeups match that tag.</p>
+
 </section>
+
+<script>
+  (function(){
+    var btns = document.querySelectorAll('.filter-btn');
+    var items = document.querySelectorAll('.writeup-item');
+    var none = document.getElementById('no-results');
+    btns.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        btns.forEach(function(b){ b.classList.remove('active'); });
+        btn.classList.add('active');
+        var f = btn.getAttribute('data-filter');
+        var shown = 0;
+        items.forEach(function(it){
+          var tags = (it.getAttribute('data-tags') || '').split(' ');
+          var match = (f === 'all') || tags.indexOf(f) !== -1;
+          it.style.display = match ? '' : 'none';
+          if(match) shown++;
+        });
+        none.style.display = shown === 0 ? 'block' : 'none';
+      });
+    });
+  })();
+</script>
