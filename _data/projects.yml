@@ -10,19 +10,19 @@
 - name: SIMPLE-CLI
   badge: active
   badge_cls: ""
-  desc: "Offensive-security multitool wrapping recon, enumeration, and exploitation workflows behind a single clean command-line interface."
+  desc: "Offensive-security multitool wrapping recon, enumeration, and exploitation through a command-line interface."
   tech: [Python, Bash, offsec, tooling]
   url: "https://github.com/mpck4/SIMPLE-CLI"
 
 - name: CookYourBooks
   badge: NEU Assignment
   badge_cls: ""
-  desc: "A Java recipe application built as a full-stack exercise — clean data modeling, search, and a usable desktop UI."
+  desc: "A full-stack Java recipe browser application — data modeling, search, and a usable desktop UI."
   tech: [Java, desktop, app]
   url: "https://neu-pdi.github.io/CS3100-Spring-2026/showcase/"
 
 - name: HungryHusky
-  badge: Tracking
+  badge: Tracking 
   badge_cls: ""
   desc: "NEU dining dollar tracker"
   tech: [JavaScript, HTML, CSS]

@@ -1,9 +1,6 @@
 <footer>
   <div class="foot-inner">
     <span class="l">© {{ 'now' | date: "%Y" }} <a href="{{ '/' | relative_url }}">{{ site.author.name }}</a> · charliekruger.dev</span>
-      <div class="privacy">
-        This website does not collect, store, or share any<br>
-        personal data or use tracking cookies.
-      </div>
+      <a href="{{ '/privacy/' | relative_url }}" {% if page.url contains 'privacy' %}class="active"{% endif %}>privacy</a>
   </div>
 </footer>
