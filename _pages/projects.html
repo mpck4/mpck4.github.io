@@ -4,25 +4,18 @@ title: Projects
 permalink: /projects/
 ---
 
-<div class="breadcrumb"><a href="{{ '/' | relative_url }}">~/</a><span class="sep">/</span>projects</div>
-<div class="page-head">
-  <h1><span class="p">#</span> projects</h1>
-  <div class="sub">tools, research, and things I've built · offensive security &amp; beyond</div>
-</div>
+<div class="section-label">// projects</div>
+<h1 class="page-title">Projects</h1>
+<div class="subtitle">Tools, research, and things I've built</div>
 
-<section style="padding-top:32px">
-  <div class="grid">
-    {% for project in site.data.projects %}
-    <div class="card">
-      <div class="card-top">
-        <h3><span class="fn">{% if project.url and project.url != "" %}<a href="{{ project.url }}" target="_blank" rel="noopener" style="color:inherit">{{ project.name }}</a>{% else %}{{ project.name }}{% endif %}</span></h3>
-        {% if project.badge %}<span class="badge {{ project.badge_cls }}">{{ project.badge }}</span>{% endif %}
-      </div>
-      <p>{{ project.desc }}</p>
-      <div class="card-foot">
-        {% for t in project.tech %}<span class="tech">{{ t }}</span>{% endfor %}
-      </div>
+<div class="rows">
+  {% for project in site.data.projects %}
+  <div class="row">
+    <div>
+      <div class="r-title"><span class="n">{{ forloop.index | prepend: '0' }}</span>{% if project.url and project.url != "" %}<a href="{{ project.url }}" target="_blank" rel="noopener" class="r-title" style="color:inherit">{{ project.name }}</a>{% else %}{{ project.name }}{% endif %}</div>
+      <div class="r-desc">{{ project.desc }}</div>
     </div>
-    {% endfor %}
+    <div class="r-meta">{{ project.badge }}<br>{% for t in project.tech limit:3 %}{{ t }}{% unless forloop.last %} · {% endunless %}{% endfor %}</div>
   </div>
-</section>
+  {% endfor %}
+</div>

@@ -7,6 +7,7 @@ baseurl: ""
 author:
   name: Charlie Kruger
   bio: "Cybersecurity @ Northeastern · Pentesting & Offensive Security · Bug Bounty"
+  avatar: ""        # put /assets/img/avatar.png here when ready
   github: mpck4
   twitter: mpck4
   tryhackme: mpck4

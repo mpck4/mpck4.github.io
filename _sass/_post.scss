@@ -1,94 +1,59 @@
 // ── Post reading page ─────────────────────────────────
 .post{max-width:760px}
-
-.post-header{margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid $border}
-.post-title{color:$white;font-size:1.7rem;font-weight:800;letter-spacing:-.5px;line-height:1.25;margin-bottom:.9rem}
-.post-meta{display:flex;flex-wrap:wrap;gap:1rem;font-size:.8rem;color:$muted;align-items:center}
-.post-meta-item{display:flex;align-items:center;gap:.4rem}
-.post-meta-item a{color:$muted}
-.post-meta-item a:hover{color:$accent}
+.post-meta{display:flex;flex-wrap:wrap;gap:1rem;font-size:.8rem;color:var(--muted);align-items:center;margin-bottom:36px;font-family:#{$mono}}
+.post-meta a{color:var(--muted)}
+.post-meta a:hover{color:var(--white)}
 .post-meta-tags{display:flex;gap:.4rem;flex-wrap:wrap}
 
-// ── Post body ─────────────────────────────────────────
 .post-body{
-  font-size:.95rem;line-height:1.75;color:$text;
+  font-size:.95rem;line-height:1.75;color:var(--text);
 
-  h1,h2,h3,h4,h5,h6{
-    color:$white;font-weight:700;letter-spacing:-.3px;margin:2.2rem 0 .9rem;line-height:1.3;
-    &::before{content:'# ';color:$accent;font-weight:800}
-  }
-  h1{font-size:1.4rem}
-  h2{font-size:1.2rem}
-  h3{font-size:1.05rem}
-  h2::before{content:'## '}
-  h3::before{content:'### '}
-  h4::before{content:'#### '}
+  h1,h2,h3,h4{color:var(--white);font-weight:600;letter-spacing:-.3px;margin:2.2rem 0 .9rem;line-height:1.3;padding-bottom:.4rem;border-bottom:1px solid var(--line)}
+  h1{font-size:1.35rem}h2{font-size:1.15rem}h3{font-size:1.02rem;border-bottom:none}h4{font-size:.95rem;border-bottom:none}
 
   p{margin-bottom:1.15rem}
-  a{color:$accent;text-decoration:underline;text-underline-offset:2px}
-  a:hover{color:$white}
-  strong{color:$white;font-weight:700}
+  a{color:var(--white);text-decoration:underline;text-underline-offset:2px}
+  a:hover{color:var(--accent)}
+  strong{color:var(--white);font-weight:600}
 
   ul,ol{margin:.6rem 0 1.2rem 1.4rem}
-  ul{list-style:disc}
-  ol{list-style:decimal}
   li{margin-bottom:.4rem}
-  li::marker{color:$accent}
+  li::marker{color:var(--dim)}
 
-  blockquote{
-    border-left:3px solid $accent;padding:.6rem 0 .6rem 1.1rem;margin:1.6rem 0;
-    color:$muted;background:$bg2;border-radius:0 6px 6px 0;
+  blockquote{border-left:2px solid var(--line-strong);padding:.4rem 0 .4rem 1.1rem;margin:1.6rem 0;color:var(--muted)}
+  hr{border:none;border-top:1px solid var(--line);margin:2.2rem 0}
+
+  code{font-family:#{$mono};font-size:.85em;background:var(--line);color:var(--text);padding:2px 6px;border:1px solid var(--line-strong)}
+
+  // code blocks — terminal window, square edges
+  pre{background:var(--bg);overflow-x:auto;font-size:.82rem;line-height:1.6;padding:16px 18px;margin:0;white-space:pre-wrap;word-break:break-word;
+    code{background:none;border:none;padding:0;color:var(--text);font-size:inherit}
   }
-
-  hr{border:none;border-top:1px solid $border;margin:2.2rem 0}
-
-  // inline code
-  code{
-    font-family:$font-mono;font-size:.85em;background:$bg3;color:$accent3;
-    padding:2px 6px;border-radius:4px;border:1px solid $border;
+  .highlight{margin:1.5rem 0;border:1px solid var(--line-strong);background:var(--bg);
+    pre{border:none;background:transparent}
   }
+  > pre{border:1px solid var(--line-strong);margin:1.5rem 0}
 
-  // code blocks (rouge wraps in .highlight; bare pre also handled)
-  pre{
-    background:$bg2;white-space:pre-wrap;word-break:break-word;overflow-x:auto;;font-size:.82rem;line-height:1.6;
-    padding:16px 18px;margin:0;
-    code{background:none;border:none;padding:0;color:$text;font-size:inherit}
+  table{width:100%;border-collapse:collapse;font-size:.85rem;margin:1.6rem 0;
+    th{text-align:left;padding:.55rem .8rem;background:var(--line);color:var(--white);border:1px solid var(--line-strong);font-weight:600}
+    td{padding:.5rem .8rem;border:1px solid var(--line);color:var(--text)}
   }
-  .highlight{
-    margin:1.5rem 0;border:1px solid $border;border-radius:8px;overflow:hidden;background:$bg2;
-    pre{border:none;border-radius:0;background:transparent}
-  }
-  > pre{border:1px solid $border;border-radius:8px;margin:1.5rem 0}
-
-  table{
-    width:100%;border-collapse:collapse;font-size:.85rem;margin:1.6rem 0;
-    th{text-align:left;padding:.55rem .8rem;background:$bg3;color:$accent;border:1px solid $border;font-weight:700}
-    td{padding:.5rem .8rem;border:1px solid $border;color:$text}
-    tr:nth-child(even) td{background:rgba(20,23,31,0.5)}
-  }
-
-  img{border-radius:6px;border:1px solid $border;margin:1.6rem 0}
+  img{border:1px solid var(--line-strong);margin:1.6rem 0}
 }
 
-// terminal header bar on code blocks (flat selector, compile-safe)
+// terminal header bar — outermost .highlight only
 .post-body .highlight::before{
-  content:"● ● ●";display:block;height:34px;line-height:34px;padding:0 14px;
-  color:$wine-edge;font-size:11px;letter-spacing:3px;
-  background:$bg3;border-bottom:1px solid $border;
+  content:"● ● ●";display:block;height:32px;line-height:32px;padding:0 14px;
+  color:var(--line-strong);font-size:11px;letter-spacing:3px;
+  background:var(--line);border-bottom:1px solid var(--line-strong);
 }
-.post-body .highlight .highlight{border:none;border-radius:0;margin:0;background:transparent}
+.post-body .highlight .highlight{border:none;margin:0;background:transparent}
 .post-body .highlight .highlight::before{display:none}
 
-// ── Post nav (prev/next) ──────────────────────────────
-.post-nav{
-  display:flex;justify-content:space-between;gap:1rem;margin-top:3rem;
-  padding-top:1.5rem;border-top:1px solid $border;font-size:.8rem;
-}
-.post-nav-link{
-  display:flex;flex-direction:column;gap:.3rem;padding:.8rem 1rem;
-  background:$bg2;border:1px solid $border;border-radius:8px;max-width:46%;
-  transition:border-color $transition;
-  &:hover{border-color:$accent}
-  .nav-dir{color:$muted;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase}
-  .nav-title{color:$white;font-weight:500}
+// ── Post nav ──────────────────────────────────────────
+.post-nav{display:flex;justify-content:space-between;gap:1rem;margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--line);font-size:.8rem}
+.post-nav-link{display:flex;flex-direction:column;gap:.3rem;padding:.8rem 1rem;background:var(--bg);border:1px solid var(--line);max-width:46%;
+  &:hover{border-color:var(--line-strong)}
+  .nav-dir{color:var(--dim);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;font-family:#{$mono}}
+  .nav-title{color:var(--white);font-weight:500}
 }

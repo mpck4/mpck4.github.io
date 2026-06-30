@@ -2,72 +2,53 @@
 layout: default
 ---
 
-<header class="hero">
-  <div class="term">
-    <div class="term-bar">
-      <span class="bl"><span class="b">~/</span>whoami.sh</span>
-      <span class="clock" id="clock">--:--</span>
-    </div>
-    <div class="term-body">
-<div class="cat">      /\_/\
-     ( o.o )
-      &gt; ^ &lt;    cybersecurity @ northeastern
+<div class="section-label">// about</div>
+<h1 class="page-title">{{ site.author.name }}</h1>
+<div class="subtitle">Cybersecurity @ Northeastern · Cyber Operations</div>
+
+<div class="prose">
+  <p>I'm a Cybersecurity student at Northeastern's Khoury College concentrating in Cyber Operations. I work across web app pentesting, privilege escalation, binary exploitation, and hardware/RF tinkering.</p>
+  <p>This site is where I document <strong>writeups</strong>, <strong>tooling</strong>, and <strong>research</strong>. Currently ranked <strong>top 1%</strong> on TryHackMe and placed 3rd at an MIT hackathon with an AI SSH honeypot.</p>
 </div>
-      <div class="line"><span class="sh-prompt">charlie@khoury</span><span class="sh-dim">:</span><span class="sh-path">~</span><span class="sh-dim">$</span> <span class="sh-white">whoami &amp;&amp; cat ./bio</span></div>
-      <div class="line"><span class="sh-white">charlie kruger (mpck4)</span></div>
-      <div class="line"><span class="sh-out">offensive security · pentesting · ctf writeups</span></div>
-      <div class="line"><span class="sh-dim">northeastern khoury · cyber operations · class of 2029</span></div>
-      <div class="line"><span class="sh-amber">[+] scroll to explore →</span><span class="tcursor"></span></div>
+
+<div class="grid-box">
+  <div class="cell"><div class="k">Focus</div><div class="v">Offensive Security</div></div>
+  <div class="cell"><div class="k">School</div><div class="v">Northeastern · Khoury</div></div>
+  <div class="cell"><div class="k">TryHackMe</div><div class="v">Top 1% global</div></div>
+  <div class="cell"><div class="k">Grad</div><div class="v">2029</div></div>
+</div>
+
+<div class="section-label">// stack</div>
+<div class="skills">
+  <span>Python</span><span>Java</span><span>Bash</span><span>PowerShell</span><span>Ruby</span>
+  <span>Metasploit</span><span>Nmap</span><span>Burp Suite</span><span>Wireshark</span>
+</div>
+
+<div class="section-label" style="margin-top:44px">// selected projects</div>
+<div class="rows">
+  {% for project in site.data.projects limit:3 %}
+  <div class="row">
+    <div>
+      <div class="r-title"><span class="n">{{ forloop.index | prepend: '0' }}</span>{% if project.url and project.url != "" %}<a href="{{ project.url }}" target="_blank" rel="noopener" class="r-title" style="color:inherit">{{ project.name }}</a>{% else %}{{ project.name }}{% endif %}</div>
+      <div class="r-desc">{{ project.desc }}</div>
     </div>
+    <div class="r-meta">{{ project.badge }}<br>{% for t in project.tech limit:2 %}{{ t }}{% unless forloop.last %} · {% endunless %}{% endfor %}</div>
   </div>
+  {% endfor %}
+</div>
+<div class="more-row"><a class="more-link" href="{{ '/projects/' | relative_url }}">all projects →</a></div>
 
-  <div class="hero-tags">
-    <span class="pill"><b>TryHackMe</b> top 1% global</span>
-    <span class="pill"><b>BS</b> Cybersecurity @ Northeastern</span>
-    <span class="pill"><b>Concentration</b> Cyber Operations</span>
-  </div>
-</header>
-
-<section id="projects">
-  <div class="sec-head">
-    <span class="hash">#</span><h2>projects</h2>
-    <span class="rule"></span><span class="count">./ls -la | head -3</span>
-  </div>
-  <div class="grid">
-    {% for project in site.data.projects limit:3 %}
-    <div class="card">
-      <div class="card-top">
-        <h3><span class="fn">{% if project.url and project.url != "" %}<a href="{{ project.url }}" target="_blank" rel="noopener" style="color:inherit">{{ project.name }}</a>{% else %}{{ project.name }}{% endif %}</span></h3>
-        {% if project.badge %}<span class="badge {{ project.badge_cls }}">{{ project.badge }}</span>{% endif %}
-      </div>
-      <p>{{ project.desc }}</p>
-      <div class="card-foot">
-        {% for t in project.tech %}<span class="tech">{{ t }}</span>{% endfor %}
-      </div>
+<div class="section-label" style="margin-top:44px">// recent writeups</div>
+<div class="rows">
+  {% for post in site.posts limit:3 %}
+  <a class="wrow" href="{{ post.url | relative_url }}" style="color:inherit">
+    <span class="wdate">{{ post.date | date: "%d %b %y" }}</span>
+    <div>
+      <div class="wtitle">{{ post.title }}</div>
+      {% if post.categories.size > 0 or post.tags.size > 0 %}<div class="wcat">{% if post.categories.size > 0 %}{{ post.categories | first }}{% endif %}{% for tag in post.tags limit:3 %} · {{ tag }}{% endfor %}</div>{% endif %}
     </div>
-    {% endfor %}
-  </div>
-  <div class="more-row"><a class="more-link" href="{{ '/projects/' | relative_url }}">view all projects →</a></div>
-</section>
-
-<section id="writeups">
-  <div class="sec-head">
-    <span class="hash">#</span><h2>recent writeups</h2>
-    <span class="rule"></span><span class="count">cat ~/posts/* | head -3</span>
-  </div>
-  <div class="posts">
-    {% for post in site.posts limit:3 %}
-    <a class="post-row" href="{{ post.url | relative_url }}" style="text-decoration:none">
-      <span class="pdate">{{ post.date | date: "%d %b %y" }}</span>
-      <div class="post-main">
-        <span style="color:var(--white);font-weight:500;font-size:14px">{{ post.title }}</span>
-        {% if post.categories.size > 0 or post.tags.size > 0 %}
-        <div class="post-cat">{% if post.categories.size > 0 %}{{ post.categories | first }}{% endif %}{% for tag in post.tags limit:3 %} · {{ tag }}{% endfor %}</div>
-        {% endif %}
-      </div>
-      <span class="post-arrow">→</span>
-    </a>
-    {% endfor %}
-  </div>
-  <div class="more-row"><a class="more-link" href="{{ '/writeups/' | relative_url }}">view all writeups →</a></div>
-</section>
+    <span class="warrow">→</span>
+  </a>
+  {% endfor %}
+</div>
+<div class="more-row"><a class="more-link" href="{{ '/writeups/' | relative_url }}">all writeups →</a></div>

@@ -1,0 +1,25 @@
+<aside class="sidebar">
+  <div class="avatar-wrap">
+    <div class="avatar">
+      {% if site.author.avatar %}<img src="{{ site.author.avatar | relative_url }}" alt="{{ site.author.name }}">{% else %}IMG{% endif %}
+    </div>
+    <div class="ident">
+      <a href="{{ '/' | relative_url }}" class="name" style="display:block">{{ site.author.name }}</a>
+      <div class="handle">{{ site.author.github }}</div>
+      <div class="role">{{ site.author.bio }}</div>
+    </div>
+  </div>
+
+  <nav class="snav">
+    <a href="{{ '/about/' | relative_url }}" {% if page.url == '/about/' or page.url == '/' %}class="active"{% endif %}><span class="idx">01</span> About</a>
+    <a href="{{ '/projects/' | relative_url }}" {% if page.url contains 'projects' %}class="active"{% endif %}><span class="idx">02</span> Projects</a>
+    <a href="{{ '/writeups/' | relative_url }}" {% if page.url contains 'writeups' or page.url contains 'archives' or page.url contains 'posts' %}class="active"{% endif %}><span class="idx">03</span> Writeups</a>
+    <a href="{{ '/tags/' | relative_url }}" {% if page.url contains 'tags' or page.url contains 'categories' %}class="active"{% endif %}><span class="idx">04</span> Tags</a>
+    <a href="https://github.com/{{ site.author.github }}" target="_blank" rel="noopener"><span class="idx">↗</span> GitHub</a>
+  </nav>
+
+  <div class="sidebar-foot">
+    <a href="{{ '/privacy/' | relative_url }}">privacy</a>
+    <button class="theme-toggle" id="theme-toggle">[ theme ]</button>
+  </div>
+</aside>
