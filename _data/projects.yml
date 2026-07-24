@@ -3,7 +3,7 @@
 - name: HonAI
   badge: "Sundai @ MIT"
   badge_cls: amber
-  desc: "AI-powered SSH honeypot that emulates a convincing shell using an LLM backend, logging attacker behavior in real time. Placed 3rd at an MIT hackathon."
+  desc: "AI-powered SSH honeypot that emulates a convincing shell using an LLM backend, logging attacker behavior in real time. Placed 3rd at a Sundai MIT hackathon."
   tech: [Python, LLM, SSH, honeypot]
   url: "https://github.com/mpck4/HonAI"
 
