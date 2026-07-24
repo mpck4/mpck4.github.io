@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "THM Wgel Writeup"
-date: 2026-03-05
+date: 2026-07-23
 categories: [TryHackMe]
 tags: [thm, writeup]
 ---
